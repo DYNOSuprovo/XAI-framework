@@ -1,12 +1,14 @@
 # XAI-Framework
 
-[![CI](https://github.com/adamsilva/XAI-Framework/actions/workflows/ci.yml/badge.svg)](https://github.com/adamsilva/XAI-Framework/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/xai-framework.svg)](https://pypi.org/project/xai-framework/)
-[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue.svg)](pyproject.toml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![Good first issues](https://img.shields.io/github/issues/adamsilva/XAI-Framework/good%20first%20issue?label=good%20first%20issues&color=7057ff)](https://github.com/adamsilva/XAI-Framework/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/adaumsilva/XAI-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/adaumsilva/XAI-framework/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/adaumsilva/XAI-framework/branch/main/graph/badge.svg)](https://codecov.io/gh/adaumsilva/XAI-framework)
+[![GitHub issues](https://img.shields.io/github/issues/adaumsilva/XAI-framework)](https://github.com/adaumsilva/XAI-framework/issues)
+[![Good first issues](https://img.shields.io/github/issues/adaumsilva/XAI-framework/good%20first%20issue?label=good%20first%20issues&color=7057ff)](https://github.com/adaumsilva/XAI-framework/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/adaumsilva/XAI-framework/blob/main/CONTRIBUTING.md)
+[![GitHub contributors](https://img.shields.io/github/contributors/adaumsilva/XAI-framework)](https://github.com/adaumsilva/XAI-framework/graphs/contributors)
+[![GitHub stars](https://img.shields.io/github/stars/adaumsilva/XAI-framework?style=social)](https://github.com/adaumsilva/XAI-framework/stargazers)
 
 **One call, several attribution methods, and a measure of how much they agree.**
 
@@ -40,7 +42,7 @@ Agreement between coalition + surrogate: moderate (rho = 0.76) - the top feature
 
 > **Status:** alpha (v0.1). The API is small and stable enough to build on, but expect
 > additions. Contributions are very welcome - see [Contributing](#contributing) and the
-> [open issues](https://github.com/adamsilva/XAI-Framework/issues).
+> [open issues](https://github.com/adaumsilva/XAI-framework/issues).
 
 ## The methods
 
@@ -67,7 +69,7 @@ Requires Python 3.10+. Tested on 3.10 - 3.14.
 From source:
 
 ```bash
-git clone https://github.com/adamsilva/XAI-Framework.git
+git clone https://github.com/adaumsilva/XAI-framework.git
 cd XAI-Framework
 pip install -e ".[dev]"
 pytest

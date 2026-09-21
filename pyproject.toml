@@ -40,8 +40,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/adamsilva/XAI-Framework"
-Issues = "https://github.com/adamsilva/XAI-Framework/issues"
+Homepage = "https://github.com/adaumsilva/XAI-framework"
+Issues = "https://github.com/adaumsilva/XAI-framework/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
