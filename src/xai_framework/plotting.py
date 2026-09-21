@@ -36,7 +36,7 @@ def plot_explanation(
     try:
         import matplotlib.pyplot as plt
     except ImportError as e:  # pragma: no cover - exercised only without matplotlib
-        raise ImportError("plotting needs matplotlib: pip install 'xai-framework[plot]'") from e
+        raise ImportError("plotting needs matplotlib: pip install matplotlib") from e
 
     from .explanation import ConsensusExplanation
 

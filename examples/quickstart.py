@@ -35,7 +35,7 @@ glob = explain(model, X_test, y=y_test, class_names=["malignant", "benign"], ran
 print()
 print(glob.to_text())
 
-# 4. Plot (needs matplotlib: pip install "xai-framework[plot]").
+# 4. Plot (needs matplotlib: pip install matplotlib).
 try:
     import matplotlib
 

@@ -59,18 +59,25 @@ method that follows the contract can join the consensus.
 
 ## Install
 
+The package is not on PyPI yet - install it straight from GitHub:
+
 ```bash
-pip install xai-framework            # numpy, pandas
-pip install "xai-framework[plot]"    # + matplotlib for .plot()
+pip install git+https://github.com/adaumsilva/XAI-framework.git
 ```
 
-Requires Python 3.10+. Tested on 3.10 - 3.14.
+With plotting support (adds matplotlib for `.plot()`):
 
-From source:
+```bash
+pip install "xai-framework[plot] @ git+https://github.com/adaumsilva/XAI-framework.git"
+```
+
+Requires Python 3.10+. Tested on 3.10 - 3.14. Only `numpy` and `pandas` are pulled in.
+
+To work on the code itself, clone it and install in editable mode with the dev tools:
 
 ```bash
 git clone https://github.com/adaumsilva/XAI-framework.git
-cd XAI-Framework
+cd XAI-framework
 pip install -e ".[dev]"
 pytest
 ```
