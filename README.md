@@ -1,5 +1,13 @@
 # XAI-Framework
 
+[![CI](https://github.com/adamsilva/XAI-Framework/actions/workflows/ci.yml/badge.svg)](https://github.com/adamsilva/XAI-Framework/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/xai-framework.svg)](https://pypi.org/project/xai-framework/)
+[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue.svg)](pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Good first issues](https://img.shields.io/github/issues/adamsilva/XAI-Framework/good%20first%20issue?label=good%20first%20issues&color=7057ff)](https://github.com/adamsilva/XAI-Framework/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 **One call, several attribution methods, and a measure of how much they agree.**
 
 XAI-Framework is a model-agnostic explainable-AI library with its **own native
