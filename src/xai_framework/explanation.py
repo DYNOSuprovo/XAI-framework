@@ -250,11 +250,11 @@ class Explanation:
         lines = [
             self._headline(),
             "",
-            "| " + " | ".join(headers) + " |",
+            "| " + " | ".join(_escape_markdown(h) for h in headers) + " |",
             "| " + " | ".join("---" for _ in headers) + " |",
         ]
         for row in rows:
-            lines.append("| " + " | ".join(row) + " |")
+            lines.append("| " + " | ".join(_escape_markdown(c) for c in row) + " |")
 
         extra = self._extra_text()
         if extra:
@@ -369,6 +369,18 @@ def _fmt(value: Any) -> str:
     if isinstance(value, (float, np.floating)):
         return f"{value:.4g}"
     return str(value)
+
+
+def _escape_markdown(text: Any) -> str:
+    """Escape text for safe inclusion in Markdown table headers and cells.
+
+    Escapes backslashes, table delimiter pipes, and converts embedded
+    newlines into '<br>' so table rows do not break.
+    """
+    s = str(text)
+    s = s.replace("\\", "\\\\")
+    s = s.replace("|", "\\|")
+    return s.replace("\r\n", "\n").replace("\r", "\n").replace("\n", "<br>")
 
 
 def _jsonable(value: Any) -> Any:

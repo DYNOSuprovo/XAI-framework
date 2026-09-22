@@ -203,3 +203,75 @@ def test_to_markdown_surrogate_local_r2():
     exp = make([0.5, -0.5], feature_values=np.array([1, 2]), metadata={"local_r2": 0.94})
     md = exp.to_markdown()
     assert "Local surrogate fit R^2 = 0.94." in md
+
+
+def test_escape_markdown_helper():
+    from xai_framework.explanation import _escape_markdown
+
+    assert _escape_markdown("simple") == "simple"
+    assert _escape_markdown("pipe|char") == "pipe\\|char"
+    assert _escape_markdown("back\\slash") == "back\\\\slash"
+    assert _escape_markdown("new\nline") == "new<br>line"
+    assert _escape_markdown("crlf\r\nline") == "crlf<br>line"
+    assert _escape_markdown("combo\\path|part\nend") == "combo\\\\path\\|part<br>end"
+
+
+def test_to_markdown_escapes_special_characters():
+    """Verify pipes, backslashes, and newlines in feature names, feature values, and headers are escaped."""
+    exp = Explanation(
+        feature_names=["income|monthly", "path\\name", "normal"],
+        values=np.array([1.5, -0.8, 0.2]),
+        method="tree_shap",
+        scope="local",
+        feature_values=np.array(["line1\nline2", "val|pipe", "val\\slash"]),
+    )
+    md = exp.to_markdown()
+    lines = md.splitlines()
+
+    # Headers line
+    assert lines[2] == "| feature | value | attribution |"
+    assert lines[3] == "| --- | --- | --- |"
+
+    # Row 1: feature 'income|monthly' -> 'income\|monthly', value 'line1\nline2' -> 'line1<br>line2'
+    assert lines[4] == "| income\\|monthly | line1<br>line2 | +1.5 |"
+    # Row 2: feature 'path\name' -> 'path\\name', value 'val|pipe' -> 'val\|pipe'
+    assert lines[5] == "| path\\\\name | val\\|pipe | -0.8 |"
+    # Row 3: feature 'normal', value 'val\slash' -> 'val\\slash'
+    assert lines[6] == "| normal | val\\\\slash | +0.2 |"
+
+    # Ensure table rows do not break (exactly 3 data rows)
+    assert len(lines) == 7
+
+
+def test_to_markdown_consensus_escapes_method_headers_and_values():
+    """Verify custom consensus method headers with pipes, backslashes, and newlines are properly escaped."""
+    feat_names = ["feat|a", "feat\\b"]
+    comp1 = Explanation(feature_names=feat_names, values=np.array([1.0, 0.5]), method="t")
+    comp2 = Explanation(feature_names=feat_names, values=np.array([0.8, 0.4]), method="t")
+    comps = {
+        "custom|method": comp1,
+        "algo\\v2": comp2,
+        "method\nwith\nnewline": comp1,
+    }
+    exp = ConsensusExplanation(
+        feature_names=feat_names,
+        values=np.array([1.0, 0.5]),
+        method="consensus",
+        scope="local",
+        feature_values=np.array(["multi\r\nline", "regular"]),
+        components=comps,
+        agreement=0.85,
+    )
+    md = exp.to_markdown()
+    lines = md.splitlines()
+
+    # Headers line should escape pipes, backslashes, and newlines in component method names
+    assert (
+        lines[2]
+        == "| feature | value | attribution | custom\\|method | algo\\\\v2 | method<br>with<br>newline |"
+    )
+    assert lines[3] == "| --- | --- | --- | --- | --- | --- |"
+
+    # Data rows should also escape features and values
+    assert lines[4] == "| feat\\|a | multi<br>line | +1 | +0.6667 | +0.6667 | +0.6667 |"
+    assert lines[5] == "| feat\\\\b | regular | +0.5 | +0.3333 | +0.3333 | +0.3333 |"
